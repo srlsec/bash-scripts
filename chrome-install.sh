@@ -1,86 +1,91 @@
 #!/bin/bash
 
-# Google Chrome Installer for Ubuntu 24.04
-# Method 1: Official .deb Package
+# Simple Google Chrome Installer for Ubuntu 24.04
+# Default: Method 1 (Direct .deb download)
+# Optional: Method 2 (Repository install)
 
-set -e  # Exit on any error
+set -e  # Exit on error
 
 echo "=========================================="
-echo "Google Chrome Installer for Ubuntu 24.04"
+echo "  Google Chrome Installer for Ubuntu"
 echo "=========================================="
 
-# Check if running as root
+# Check root
 if [ "$EUID" -eq 0 ]; then 
-    echo "Please do not run as root/sudo. Run as normal user."
+    echo "Please run as normal user (not root/sudo)"
     exit 1
 fi
 
-# Check if wget is installed
-if ! command -v wget &> /dev/null; then
-    echo "Installing wget..."
-    sudo apt update && sudo apt install -y wget
-fi
+# Show installation methods
+echo ""
+echo "Select installation method:"
+echo "  1) Direct .deb download (Default - One-time install)"
+echo "  2) Add repository (Recommended - Auto updates via apt)"
+echo ""
+read -p "Enter choice [1]: " -r method
+method=${method:-1}  # Default to method 1
 
-# Check if Google Chrome is already installed
+# Check if Chrome already exists
 if command -v google-chrome &> /dev/null; then
-    echo "Google Chrome is already installed."
-    echo "Version: $(google-chrome --version)"
-    echo "Would you like to reinstall? (y/N)"
-    read -r response
-    if [[ ! "$response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-        echo "Installation cancelled."
+    echo "Chrome already installed: $(google-chrome --version)"
+    read -p "Reinstall? (y/N): " -r reinstall
+    if [[ ! "$reinstall" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        echo "Cancelled."
         exit 0
     fi
 fi
 
-# Create a temporary directory for the download
-TEMP_DIR=$(mktemp -d)
-cd "$TEMP_DIR"
-
-echo "Downloading Google Chrome..."
-wget -q --show-progress https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-
-# Verify download was successful
-if [ ! -f "google-chrome-stable_current_amd64.deb" ]; then
-    echo "Error: Failed to download Google Chrome package."
-    exit 1
+# Install based on chosen method
+if [ "$method" -eq "1" ]; then
+    echo "Installing using Method 1 (Direct .deb)..."
+    
+    # Install wget if missing
+    if ! command -v wget &> /dev/null; then
+        sudo apt update && sudo apt install -y wget
+    fi
+    
+    # Download and install
+    wget -q --show-progress https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    rm -f google-chrome-stable_current_amd64.deb
+    
+    echo "✓ Installed via .deb package"
+    echo "  Note: Run this script again to update"
+    
+elif [ "$method" -eq "2" ]; then
+    echo "Installing using Method 2 (Repository)..."
+    
+    # Add repository and install
+    wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo gpg --dearmor -o /usr/share/keyrings/googlechrome-linux-keyring.gpg
+    echo "deb [arch=amd64 signed-by=/usr/share/keyrings/googlechrome-linux-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+    sudo apt update
+    sudo apt install -y google-chrome-stable
+    
+    echo "✓ Installed via repository"
+    echo "  Updates: sudo apt update && sudo apt upgrade"
+    
+else
+    echo "Invalid choice. Using Method 1 (default)..."
+    wget -q --show-progress https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install -y ./google-chrome-stable_current_amd64.deb
+    rm -f google-chrome-stable_current_amd64.deb
 fi
 
-echo "Installing Google Chrome..."
-echo "You may be prompted for your password..."
-
-# Install the package
-sudo apt install -y ./google-chrome-stable_current_amd64.deb
-
-# Check installation was successful
+# Verify installation
 if command -v google-chrome &> /dev/null; then
     echo ""
-    echo "✓ Installation successful!"
-    echo "✓ Google Chrome $(google-chrome --version | cut -d ' ' -f 3) installed"
-    echo ""
-    echo "You can launch Chrome from:"
-    echo "  • Applications menu"
-    echo "  • Terminal: google-chrome"
-    echo "  • Terminal (incognito): google-chrome --incognito"
+    echo "✓ Success! Chrome installed: $(google-chrome --version)"
+    
+    # Offer to launch
+    read -p "Launch Chrome now? (y/N): " -r launch
+    if [[ "$launch" =~ ^([yY][eE][sS]|[yY])$ ]]; then
+        google-chrome &
+    fi
 else
-    echo "Error: Installation may have failed. Trying alternative method..."
-    # Try alternative installation method
-    sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt --fix-broken install -y
+    echo "Installation failed. Try: sudo apt --fix-broken install"
 fi
 
-# Clean up
-cd
-rm -rf "$TEMP_DIR"
-
-# Offer to launch Chrome
 echo ""
-echo "Would you like to launch Google Chrome now? (y/N)"
-read -r launch_response
-if [[ "$launch_response" =~ ^([yY][eE][sS]|[yY])$ ]]; then
-    echo "Launching Google Chrome..."
-    google-chrome &
-fi
-
 echo "=========================================="
-echo "Installation complete!"
+echo "           Installation Complete"
 echo "=========================================="
