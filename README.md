@@ -18,3 +18,13 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/rustdesk-install.sh | sudo bash
 ```
+### Install MegaCMD
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/megacmd-install.sh | sudo bash
+```
+### Install Teamviewer
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/teamviewer-install.sh | sudo bash
+```
+
+
