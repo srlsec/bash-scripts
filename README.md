@@ -10,3 +10,11 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/tftp-server-setup.sh | sudo bash
 ```
+### Install Termius
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/termius-install.sh | sudo bash
+```
+### Install Rustdesk
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/rustdesk-install.sh | sudo bash
+```
