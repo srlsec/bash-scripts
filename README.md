@@ -26,5 +26,9 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/teamviewer-install.sh | sudo bash
 ```
+### Install Docker
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/docker-install.sh | sudo bash
+```
 
 
