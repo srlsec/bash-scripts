@@ -4,7 +4,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -sSL https://github.com/srlsec/bash-scripts/raw/refs/heads/main/check-installed-packages.sh | sudo bash
 ```
 
-## Install Google chrome
+### Install Google chrome
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/chrome-install.sh | sudo bash
 ```
