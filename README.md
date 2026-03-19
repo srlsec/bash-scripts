@@ -16,7 +16,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 ### Install Rustdesk
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/rustdesk-install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/rustdesk-install.sh | sed 's/\r$//' | sudo bash
 ```
 ### Install MegaCMD
 ```
