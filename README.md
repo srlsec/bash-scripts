@@ -12,7 +12,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 ### Install Termius
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/termius-install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/termius-install.sh | sed 's/\r$//' | sudo bash
 ```
 ### Install Rustdesk
 ```
