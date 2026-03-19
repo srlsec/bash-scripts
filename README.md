@@ -24,7 +24,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 ### Install Teamviewer
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/teamviewer-install.sh | sudo bash
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/teamviewer-install.sh | sed 's/\r$//' | sudo bash
 ```
 ### Install Docker
 ```
