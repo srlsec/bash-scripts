@@ -51,4 +51,14 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/brave-browser.sh | sed 's/\r$//' | sudo bash
 ```
 
+### Install Wine 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wine-install.sh | sed 's/\r$//' | sudo bash
+```
+
+### Install Tailscale VPN 
+```
+curl -fsSL https://tailscale.com/install.sh | sh
+```
+
 
