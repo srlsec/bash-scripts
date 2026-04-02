@@ -65,5 +65,9 @@ curl -fsSL https://tailscale.com/install.sh | sh
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wireguard-install.sh | sed 's/\r$//' | sudo bash
 ```
+### Install MobaXterm
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/mobaxterm-install.sh | sed 's/\r$//' | sudo bash
+```
 
 
