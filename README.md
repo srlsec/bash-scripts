@@ -67,7 +67,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 ### Install MobaXterm
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/mobaxterm-install.sh | sed 's/\r$//' | sudo bash
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/mobaxterm-install.sh | sed 's/\r$//' | bash
 ```
 
 
