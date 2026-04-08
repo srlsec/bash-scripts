@@ -46,6 +46,14 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/net-permission.sh | sed 's/\r$//' | sudo bash
 ```
+### Allow IP Change permission to users
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/net-permission.sh | sed 's/\r$//' | sudo bash
+```
+### Dialup profile create 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/dialup-create.sh | sed 's/\r$//' | sudo bash
+```
 ### Install Brave Browser  
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/brave-browser.sh | sed 's/\r$//' | sudo bash
