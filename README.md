@@ -74,5 +74,9 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/mobaxterm-install.sh | sed 's/\r$//' | bash
 ```
+### Microsoft Teams
+```
+sudo snap install teams-for-linux
+```
 
 
