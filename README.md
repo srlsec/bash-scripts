@@ -78,5 +78,9 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 sudo snap install teams-for-linux
 ```
+### Install Zoiper 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/zoiper-install.sh | sed 's/\r$//' | sudo bash
+```
 
 
