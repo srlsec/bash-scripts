@@ -83,4 +83,9 @@ sudo snap install teams-for-linux
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/zoiper-install.sh | sed 's/\r$//' | sudo bash
 ```
 
+### Install Packet Tracer 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/install-packet-tracer.sh | sed 's/\r$//' | sudo bash
+```
+
 
