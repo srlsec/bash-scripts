@@ -88,4 +88,15 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/install-packet-tracer.sh | sed 's/\r$//' | sudo bash
 ```
 
+### Install Linphone
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/install-packet-tracer.sh | sed 's/\r$//' | sudo bash
+```
+
+### Install VS Code
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/install-packet-tracer.sh | sed 's/\r$//' | sudo bash
+```
+
+
 
