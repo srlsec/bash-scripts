@@ -95,7 +95,7 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 
 ### Install VS Code
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/install-packet-tracer.sh | sed 's/\r$//' | sudo bash
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/vscode-install.sh | sed 's/\r$//' | sudo bash
 ```
 
 
