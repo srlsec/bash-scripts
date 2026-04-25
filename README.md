@@ -98,5 +98,10 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/vscode-install.sh | sed 's/\r$//' | sudo bash
 ```
 
+### Install Antigravity
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/antigravity-install.sh | sed 's/\r$//' | sudo bash
+```
+
 
 
