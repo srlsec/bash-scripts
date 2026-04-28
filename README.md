@@ -41,6 +41,10 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ### Install Wireshark
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wireshark-install.sh | sudo bash
+
+sudo dpkg-reconfigure wireshark-common
+sudo usermod -aG wireshark $USER
+reboot pc
 ```
 ### Install WireGuard 
 ```
