@@ -112,5 +112,10 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/anydesk-install.sh | sed 's/\r$//' | sudo bash
 ```
 
+### Install WPS Office 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wps-install.sh | sed 's/\r$//' | sudo bash
+```
+
 
 
