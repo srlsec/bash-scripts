@@ -22,6 +22,11 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/termius-install.sh | sed 's/\r$//' | sudo bash
 ```
+
+### Install Termius Alpha (Safe Crack)
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/termius-cracked-install.sh.sh | sed 's/\r$//' | sudo bash
+```
 ### Install Rustdesk
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/rustdesk-install.sh | sed 's/\r$//' | sudo bash
