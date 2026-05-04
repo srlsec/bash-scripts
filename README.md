@@ -91,6 +91,10 @@ sudo snap install teams-for-linux
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/zoiper-install.sh | sed 's/\r$//' | sudo bash
 ```
+### Install CC-agent 
+```
+curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/cc-agent-install.sh | sed 's/\r$//' | sudo bash
+```
 
 ### Install Packet Tracer 
 ```
