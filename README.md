@@ -135,7 +135,7 @@ https://github.com/tazihad/idm-linux
 ```
 ### Install Spotify (crack) 
 ```
-[https://github.com/tazihad/idm-linux](https://github.com/SpotX-Official/SpotX-Bash)
+https://github.com/SpotX-Official/SpotX-Bash
 ```
 
 
