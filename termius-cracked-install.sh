@@ -22,7 +22,7 @@ apt install megatools -y
 
 # Step 2: Download Termius from Mega
 echo "[2/12] Downloading Termius Horizontal Tabs.deb from Mega..."
-mega-get https://mega.nz/file/pChTGTSZ#CqbOuVeiu5ZShlgkKobWponDfqA19H5vmoPkWhvX9Zs
+megadl https://mega.nz/file/pChTGTSZ#CqbOuVeiu5ZShlgkKobWponDfqA19H5vmoPkWhvX9Zs
 
 # Step 3: Install Termius
 echo "[3/12] Installing Termius Horizontal Tabs.deb..."
