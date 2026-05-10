@@ -129,6 +129,14 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 sudo snap install telegram-desktop
 ```
+### Install IDM 
+```
+https://github.com/tazihad/idm-linux
+```
+### Install Spotify (crack) 
+```
+[https://github.com/tazihad/idm-linux](https://github.com/SpotX-Official/SpotX-Bash)
+```
 
 
 
