@@ -137,6 +137,10 @@ https://github.com/tazihad/idm-linux
 ```
 https://github.com/SpotX-Official/SpotX-Bash
 ```
+### Install KVM/QEMU (Virtualization) 
+```
+sudo apt update && sudo apt upgrade -y && sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virt-manager -y && sudo systemctl enable --now libvirtd && sudo usermod -aG libvirt,kvm $USER
+```
 
 
 
