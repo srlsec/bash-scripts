@@ -4,11 +4,11 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ```
 ### Allow IP Change permission to users
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/net-permission.sh | sed 's/\r$//' | sudo bash
+wget https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/net-permission.sh
 ```
 ### Dialup profile create 
 ```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/dialup-create.sh | sed 's/\r$//' | sudo bash
+wget https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/dialup-create.sh
 ```
 ### Install Google chrome
 ```
