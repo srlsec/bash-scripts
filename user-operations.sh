@@ -1,10 +1,19 @@
 #!/bin/bash
 
+# =========================================
+# User Management Script
+# =========================================
+
 # Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
 NC='\033[0m'
+
+# =========================================
+# Functions
+# =========================================
 
 print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
@@ -15,14 +24,21 @@ print_success() {
 }
 
 print_info() {
-    echo -e "${YELLOW}[INFO]${NC} $1"
+    echo -e "${BLUE}[INFO]${NC} $1"
 }
 
-# Check root
+# =========================================
+# Check Root
+# =========================================
+
 if [[ $EUID -ne 0 ]]; then
-    print_error "Run this script as root"
+    print_error "Please run as root"
     exit 1
 fi
+
+# =========================================
+# Menu
+# =========================================
 
 echo "================================="
 echo "      USER MANAGEMENT"
@@ -32,9 +48,11 @@ echo "2. Remove User"
 echo "3. Change Username"
 echo "4. List Users"
 echo "5. Reset Password"
+echo "6. Lock User"
+echo "7. Unlock User"
 echo
 
-read -p "Select option [1-5]: " choice
+read -p "Select option [1-7]: " choice
 
 # =========================================
 # ADD USER
@@ -42,7 +60,15 @@ read -p "Select option [1-5]: " choice
 
 if [[ "$choice" == "1" ]]; then
 
+    echo
+    echo "===== Add User ====="
+
     read -p "Enter username: " username
+
+    if [[ -z "$username" ]]; then
+        print_error "Username cannot be empty"
+        exit 1
+    fi
 
     if id "$username" &>/dev/null; then
         print_error "User already exists"
@@ -52,17 +78,40 @@ if [[ "$choice" == "1" ]]; then
     read -s -p "Enter password: " password
     echo
 
+    read -s -p "Confirm password: " confirm_password
+    echo
+
+    if [[ "$password" != "$confirm_password" ]]; then
+        print_error "Passwords do not match"
+        exit 1
+    fi
+
+    read -p "Create as sudo user? (y/n): " sudo_user
+
     useradd -m -s /bin/bash "$username"
+
+    if [[ $? -ne 0 ]]; then
+        print_error "Failed to create user"
+        exit 1
+    fi
 
     echo "$username:$password" | chpasswd
 
-    print_success "User created successfully"
+    if [[ "$sudo_user" =~ ^[Yy]$ ]]; then
+        usermod -aG sudo "$username"
+        print_success "Super user created successfully"
+    else
+        print_success "Normal user created successfully"
+    fi
 
 # =========================================
 # REMOVE USER
 # =========================================
 
 elif [[ "$choice" == "2" ]]; then
+
+    echo
+    echo "===== Remove User ====="
 
     read -p "Enter username to remove: " username
 
@@ -71,7 +120,19 @@ elif [[ "$choice" == "2" ]]; then
         exit 1
     fi
 
+    if [[ "$username" == "root" ]]; then
+        print_error "Cannot remove root user"
+        exit 1
+    fi
+
     read -p "Remove home directory? (y/n): " remove_home
+
+    read -p "Type YES to confirm deletion: " confirm
+
+    if [[ "$confirm" != "YES" ]]; then
+        print_info "Cancelled"
+        exit 0
+    fi
 
     if [[ "$remove_home" =~ ^[Yy]$ ]]; then
         userdel -r "$username"
@@ -79,13 +140,20 @@ elif [[ "$choice" == "2" ]]; then
         userdel "$username"
     fi
 
-    print_success "User removed successfully"
+    if [[ $? -eq 0 ]]; then
+        print_success "User removed successfully"
+    else
+        print_error "Failed to remove user"
+    fi
 
 # =========================================
 # CHANGE USERNAME
 # =========================================
 
 elif [[ "$choice" == "3" ]]; then
+
+    echo
+    echo "===== Change Username ====="
 
     read -p "Current username: " old_user
 
@@ -96,10 +164,19 @@ elif [[ "$choice" == "3" ]]; then
 
     read -p "New username: " new_user
 
+    if id "$new_user" &>/dev/null; then
+        print_error "New username already exists"
+        exit 1
+    fi
+
     usermod -l "$new_user" "$old_user"
     usermod -d "/home/$new_user" -m "$new_user"
 
-    print_success "Username changed successfully"
+    if [[ $? -eq 0 ]]; then
+        print_success "Username changed successfully"
+    else
+        print_error "Failed to change username"
+    fi
 
 # =========================================
 # LIST USERS
@@ -108,7 +185,7 @@ elif [[ "$choice" == "3" ]]; then
 elif [[ "$choice" == "4" ]]; then
 
     echo
-    echo "System Users:"
+    echo "===== System Users ====="
     echo
 
     awk -F: '$3 >= 1000 && $1 != "nobody" {
@@ -120,6 +197,9 @@ elif [[ "$choice" == "4" ]]; then
 # =========================================
 
 elif [[ "$choice" == "5" ]]; then
+
+    echo
+    echo "===== Reset Password ====="
 
     read -p "Enter username: " username
 
@@ -133,7 +213,63 @@ elif [[ "$choice" == "5" ]]; then
 
     echo "$username:$password" | chpasswd
 
-    print_success "Password updated successfully"
+    if [[ $? -eq 0 ]]; then
+        print_success "Password updated successfully"
+    else
+        print_error "Failed to reset password"
+    fi
+
+# =========================================
+# LOCK USER
+# =========================================
+
+elif [[ "$choice" == "6" ]]; then
+
+    echo
+    echo "===== Lock User ====="
+
+    read -p "Enter username: " username
+
+    if ! id "$username" &>/dev/null; then
+        print_error "User does not exist"
+        exit 1
+    fi
+
+    usermod -L "$username"
+
+    if [[ $? -eq 0 ]]; then
+        print_success "User locked successfully"
+    else
+        print_error "Failed to lock user"
+    fi
+
+# =========================================
+# UNLOCK USER
+# =========================================
+
+elif [[ "$choice" == "7" ]]; then
+
+    echo
+    echo "===== Unlock User ====="
+
+    read -p "Enter username: " username
+
+    if ! id "$username" &>/dev/null; then
+        print_error "User does not exist"
+        exit 1
+    fi
+
+    usermod -U "$username"
+
+    if [[ $? -eq 0 ]]; then
+        print_success "User unlocked successfully"
+    else
+        print_error "Failed to unlock user"
+    fi
+
+# =========================================
+# INVALID OPTION
+# =========================================
 
 else
     print_error "Invalid option"
