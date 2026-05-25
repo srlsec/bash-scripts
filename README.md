@@ -54,6 +54,12 @@ reboot pc
 ### Install WireGuard 
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wireguard-install.sh | sed 's/\r$//' | sudo bash
+
+allow permission to local users
+-------------------------------
+sudo visudo
+username ALL=(ALL) NOPASSWD: /usr/bin/wg, /usr/bin/wg-quick
+
 ```
 ### Install LibreOffice  
 ```
@@ -75,10 +81,6 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 curl -fsSL https://tailscale.com/install.sh | sh
 ```
 
-### Install WireGuard VPN 
-```
-curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/wireguard-install.sh | sed 's/\r$//' | sudo bash
-```
 ### Install MobaXterm (required wine)
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/mobaxterm-install.sh | sed 's/\r$//' | bash
