@@ -38,6 +38,10 @@ curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/
 ### Install Teamviewer
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/teamviewer-install.sh | sed 's/\r$//' | sudo bash
+
+Issue: Mouse and keyboard input do not work.
+sudo nano /etc/gdm3/custom.conf
+WaylandEnable=false
 ```
 ### Install Docker
 ```
