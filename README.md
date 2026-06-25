@@ -1,3 +1,9 @@
+### Install Basic Tools
+```
+sudo apt install traceroute
+sudo apt install iputils-ping
+sudo apt install net-tools
+```
 ### Check System Information
 ```
 curl -sSL https://raw.githubusercontent.com/srlsec/bash-scripts/refs/heads/main/systeminfo.sh | sudo bash
