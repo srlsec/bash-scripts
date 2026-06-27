@@ -3,6 +3,7 @@
 sudo apt install traceroute
 sudo apt install iputils-ping
 sudo apt install net-tools
+sudo apt install putty
 ```
 ### Check System Information
 ```
